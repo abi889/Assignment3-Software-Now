@@ -21,7 +21,7 @@ A desktop application where players find **5 differences** between two nearly id
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
@@ -36,7 +36,7 @@ A desktop application where players find **5 differences** between two nearly id
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### Prerequisites
 - Python 3.12 or higher
