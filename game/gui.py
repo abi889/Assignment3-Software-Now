@@ -182,11 +182,11 @@ class SpotTheDifferenceApp:
         h_orig, w_orig = self.original_image_original.shape[:2]
         h_mod, w_mod = self.modified_image_original.shape[:2]
         
-        img_h_orig, img_w_orig = original_resized.shape[:2]
-        img_h_mod, img_w_mod = modified_resized.shape[:2]
+        _, _, img_w_orig, img_h_orig = self.original_offset
+        _, _, img_w_mod, img_h_mod = self.modified_offset
         
-        self.scale_x_orig = w_orig / img_w_mod if img_w_mod > 0 else 1
-        self.scale_y_orig = h_orig / img_h_mod if img_h_mod > 0 else 1
+        self.scale_x_orig = w_orig / img_w_orig if img_w_orig > 0 else 1
+        self.scale_y_orig = h_orig / img_h_orig if img_h_orig > 0 else 1
         self.scale_x_mod = w_mod / img_w_mod if img_w_mod > 0 else 1
         self.scale_y_mod = h_mod / img_h_mod if img_h_mod > 0 else 1
     
@@ -262,14 +262,11 @@ class SpotTheDifferenceApp:
     
     def draw_circle_on_canvas(self, canvas, region, scale_x, scale_y, offset, color):
         x, y, w, h = region
-        cx = (x + w/2) * scale_x
-        cy = (y + h/2) * scale_y
-        radius = max(w, h) * scale_x / 2
-        
         x_offset, y_offset, _, _ = offset
-        canvas_cx = cx + x_offset
-        canvas_cy = cy + y_offset
-        
+
+        canvas_cx = x / scale_x + x_offset + (w / scale_x) / 2
+        canvas_cy = y / scale_y + y_offset + (h / scale_y) / 2
+        radius = max(w / scale_x, h / scale_y) / 2
         canvas.create_oval(canvas_cx - radius, canvas_cy - radius,
                           canvas_cx + radius, canvas_cy + radius,
                           outline=color, width=4)
@@ -298,6 +295,7 @@ class SpotTheDifferenceApp:
                                           self.modified_offset, color)
             
             self.update_score_display()
+            self.root.update()
             messagebox.showinfo("Revealed", f"{len(revealed)} differences revealed in blue.")
     
     def update_score_display(self):
