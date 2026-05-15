@@ -78,10 +78,9 @@ The codebase is organised into three core classes demonstrating encapsulation, i
 
 ## Requirements
 
-- Python 3.8+
-- opencv-python 4.8.1.78
-- numpy 1.24.3
-- Pillow 10.0.0
+- opencv-python 
+- numpy 
+- Pillow 
 
 ---
 
