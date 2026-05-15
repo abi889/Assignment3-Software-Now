@@ -128,3 +128,12 @@ python main.py
 4. Find all 5 differences to win, or make 3 mistakes and the round ends.
 5. Press **Reveal** to show all remaining differences in blue and end the round.
 6. Load a new image to play again.
+
+## Future Enhancements
+
+- Add difficulty levels (Easy, Medium, Hard)
+- Include a timer and leaderboard system
+- Add sound effects or visual feedback when differences are found
+- Option to load next image automatically after each round
+- Save user progress and game statistics
+
