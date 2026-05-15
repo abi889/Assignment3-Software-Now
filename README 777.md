@@ -17,15 +17,17 @@ A desktop "Spot the Difference" game built with Python, Tkinter, and OpenCV.
 
 ## Overview
 
-Load any image and the app automatically generates a modified copy with 5 hidden differences for you to find. The player clicks on the modified image to locate each difference, with a maximum of 3 mistakes allowed per round.
+Load any image and the app automatically generates a modified copy with five hidden differences for you to find.
+Each round allows a maximum of 3 mistakes, and the goal is to spot all differences before losing your chances.
 
+This project demonstrates image processing, GUI design, and object-oriented programming principles in an interactive way.
 ---
 
 ## Features
 
 - Load any JPG, PNG, or BMP image from disk
-- Side-by-side display: original (left) vs. modified (right)
-- 5 randomly placed, non-overlapping differences per image
+- View original (left) and modified (right) images side by side
+- Automatically generate 5 non-overlapping differences
 - Red circle drawn on both images when a difference is correctly found
 - Blue circles reveal all unfound differences via the Reveal button
 - Maximum of 3 mistakes per image before the round ends
