@@ -192,31 +192,43 @@ class SpotTheDifferenceApp:
     
     def resize_with_padding(self, image, target_width, target_height):
         h, w = image.shape[:2]
-        aspect = w / h
         
-        if w > h:
-            new_w = target_width - 20
-            new_h = int(new_w / aspect)
-        else:
-            new_h = target_height - 20
-            new_w = int(new_h * aspect)
+        scale = min(target_width / w, target_height / h)
+        
+        new_w = int(w * scale)
+        new_h = int(h * scale)
         
         resized = cv2.resize(image, (new_w, new_h))
         
-        padded = np.ones((target_height, target_width, 3), dtype=np.uint8) * 128
-        y_offset = (target_height - new_h) // 2
+        padded = np.zeros((target_height, target_width, 3), dtype=np.uint8)
+        
         x_offset = (target_width - new_w) // 2
-        padded[y_offset:y_offset+new_h, x_offset:x_offset+new_w] = resized
+        y_offset = (target_height - new_h) // 2
+        
+        padded[y_offset:y_offset + new_h, x_offset:x_offset + new_w] = resized
         
         offset = (x_offset, y_offset, new_w, new_h)
+        
         return padded, offset
     
+
     def on_image_click(self, event):
         if not self.controller.game_active:
-            if self.controller.found_count == 5:
-                messagebox.showinfo("Game Complete!", "🎉 You found all differences!")
+            if self.controller.revealed:
+                messagebox.showinfo(
+                    "Round Finished",
+                    "🔍 Differences were revealed. Load a new image to play again."
+                )
+            elif self.controller.found_count == 5:
+                messagebox.showinfo(
+                    "Game Complete!",
+                    "🎉 You found all differences!"
+                )
             else:
-                messagebox.showinfo("Game Over!", f"😢 Game Over! You made {self.controller.mistakes} mistakes.")
+                messagebox.showinfo(
+                    "Game Over!",
+                    f"😢 Game Over! You made {self.controller.mistakes} mistakes."
+                )
             return
         
         x_offset, y_offset, img_w, img_h = self.modified_offset

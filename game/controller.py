@@ -1,4 +1,4 @@
-      """
+"""
 Game Controller
 """
 
@@ -12,6 +12,7 @@ class GameController:
         self.max_mistakes = 3
         self.game_active = True
         self.game_won = False
+        self.revealed = False
     
     def set_images(self, original, modified, differences):
         self.current_image = original
@@ -22,7 +23,7 @@ class GameController:
         self.game_active = True
         self.game_won = False
     
-    def check_click(self, x, y, tolerance=25):
+    def check_click(self, x, y, tolerance=50):
         if not self.game_active:
             return False, False, True
         
@@ -55,6 +56,7 @@ class GameController:
                 self.found_count += 1
                 revealed.append(diff)
         self.game_active = False
+        self.revealed = True
         return revealed
     
     def get_remaining_count(self):
@@ -72,3 +74,4 @@ class GameController:
         self.mistakes = 0
         self.game_active = True
         self.game_won = False
+        self.revealed = False

@@ -21,6 +21,7 @@ Load any image and the app automatically generates a modified copy with five hid
 Each round allows a maximum of 3 mistakes, and the goal is to spot all differences before losing your chances.
 
 This project demonstrates image processing, GUI design, and object-oriented programming principles in an interactive way.
+
 ---
 
 ## Features
@@ -38,6 +39,7 @@ This project demonstrates image processing, GUI design, and object-oriented prog
 
 ## Project Structure
 
+
 ```
 Assignment3-SoftwareNow/
 │
@@ -52,13 +54,14 @@ Assignment3-SoftwareNow/
     └── difference.py        # Image alteration strategies
 ```
 
+
 ---
 
 ## OOP Design
 
 The codebase is organised into three core classes demonstrating encapsulation, inheritance, and polymorphism.
 
-**DifferenceStrategy** (Abstract Base Class) — defines the interface for all image alteration strategies. Each subclass implements `apply(image, region)` and `get_name()`.
+**DifferenceStrategy (Abstract Base Class)** — defines the interface for all image alteration strategies. Each subclass implements `apply(image, region)` and `get_name()`.
 
 | Subclass | Alteration |
 |---|---|
@@ -68,19 +71,19 @@ The codebase is organised into three core classes demonstrating encapsulation, i
 | BrightnessStrategy | Increases brightness across the region |
 | ContrastStrategy | Scales pixel values to increase contrast |
 
-**DifferenceGenerator** — selects 5 non-overlapping regions and applies a randomly chosen strategy to each whenever an image is loaded.
+**DifferenceGenerator** — selects 5 non-overlapping regions and applies randomly chosen strategies when an image loads.
 
 **GameController** — manages all game state including images, differences found, mistakes, and win/loss conditions.
 
-**SpotTheDifferenceApp** — builds the Tkinter interface and connects the controller and generator to handle player interaction.
+**SpotTheDifferenceApp** — builds the Tkinter interface and connects controller + generator.
 
 ---
 
 ## Requirements
 
-- opencv-python 
-- numpy 
-- Pillow 
+- opencv-python
+- numpy
+- Pillow
 
 ---
 
@@ -91,7 +94,6 @@ Clone the repository:
 ```bash
 git clone https://github.com/abi889/Assignment3-Software-Now
 cd Assignment3-Software-Now
-```
 
 Create and activate a virtual environment (recommended):
 
