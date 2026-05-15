@@ -137,3 +137,12 @@ python main.py
 - Option to load next image automatically after each round
 - Save user progress and game statistics
 
+## Technical Summary
+
+- Uses **OpenCV** for image processing (blurring, brightness, contrast, and color shifting).
+- **NumPy** supports efficient pixel-level operations.
+- **Pillow (PIL)** helps handle image loading and conversions.
+- **Tkinter** provides the GUI for displaying images and handling user clicks.
+- The design follows **object-oriented principles**, separating logic, interface, and difference generation for modularity and clarity.
+
+
